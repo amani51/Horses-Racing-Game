@@ -53,6 +53,7 @@ class HorsesRacing:
 
     round_number=0 # Number of rounds
     def racing(self, other):
+        HorsesRacing.round_number+=1
         result = self.win_lose(self.Breed, other.Breed)
         if result == 'lose':
             self.point = 0
@@ -61,12 +62,15 @@ class HorsesRacing:
             else:
                 print(f"{other.name} is full.")
             print(f"{self.name} fainted!")
+            return f"{self.name} fainted!"
         elif result == 'tie':
             if self.point>0:
                 self.point -= 10
             if other.point>0:
                 other.point -= 10
             print(f"{self.name} and {other.name} battled hard. It's a tie.")
+            return f"{self.name} and {other.name} battled hard. It's a tie."
+
         elif result == 'win':
             if self.point < self.high_point:
                 self.point += 10
@@ -74,7 +78,9 @@ class HorsesRacing:
                 print(f"{self.name} is full.")
             other.point = 0
             print(f"{self.name} won. Congratulations!")
-        HorsesRacing.round_number+=1
+            return f"{self.name} won. Congratulations!"
+        
+
 
     @classmethod
     def get_round_numbers(cls):
