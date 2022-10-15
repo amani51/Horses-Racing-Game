@@ -16,6 +16,17 @@ def random_contender():
     }
     return [random.choice(contender['name']),random.choice(contender['Breed']),random.choice(contender['Point'])]
 
+
+                        # #################### Create Load Bar #################### #
+                        
+def Loadbar(iteration, total,prefix='', suffix='', decimals=1, length=100, fill='>'   ):
+                            percent = ('{0:.'+ str(decimals) + 'f}').format(100 * (iteration/float(total)))
+                            filledLenength = int(length * iteration // total)
+                            bar = fill * filledLenength + '_' * (length - filledLenength)
+                            print(f'\r{prefix} | {bar} | {percent}% {suffix}', end='\r')
+                            if iteration == total:
+                                    print()
+
 def draw_horse():
     a = """
     *************************************************************************************
@@ -85,18 +96,10 @@ if __name__ == "__main__":
                     print("*******************************************************************************\n")
                     hr=horse.racing(contender)
                     rr=f"ROUND {HorsesRacing.get_round_numbers()}"
-                    sleep(1)  
-
-                        # #################### Create Load Bar #################### #
+                    sleep(1) 
 
                     print(f"####################################################################### {rr} ###########################################\n")
-                    def Loadbar(iteration, total,prefix='', suffix='', decimals=1, length=100, fill='>'   ):
-                            percent = ('{0:.'+ str(decimals) + 'f}').format(100 * (iteration/float(total)))
-                            filledLenength = int(length * iteration // total)
-                            bar = fill * filledLenength + '_' * (length - filledLenength)
-                            print(f'\r{prefix} | {bar} | {percent}% {suffix}', end='\r')
-                            if iteration == total:
-                                    print()
+                    
 
                     items = list(range(0, 50))
                     l = len(items)  
