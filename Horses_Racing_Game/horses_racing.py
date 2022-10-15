@@ -4,6 +4,11 @@ from classes import HorsesRacing
 
 
 def random_contender():
+
+    '''
+    A Function that will choose your contender randomly depends on contender dictionary. 
+    '''
+
     contender={
     "name":['Kind','Alex', 'Lilly','Sugar','Lady','Cash','Lucky','Kind','Chance','Rose',],
     "Breed":["american", "arabian", "thoroughbred",'gypsy','andalusian'],
@@ -12,39 +17,59 @@ def random_contender():
     return [random.choice(contender['name']),random.choice(contender['Breed']),random.choice(contender['Point'])]
 
 def draw_horse():
-    a="""
-    ******************************************
-    welcome to             O  ,--.
-    Horse Racing Game   _ /|\/  /\|
-                    ,;( )__7,  )
-                    /  //  // '--.
-                    '    \,   ,' '
-    *******************************************
+    a = """
+    *************************************************************************************
+            Welcome to                   O  ,--.
+            Horse Racing Game         _ /|\/  /\|
+                                 ,;( )__7,  )
+                                 /  //  // '--.
+                                 '    \,   ,' '
+
+       ** Let's see how many rounds your horse will race before it faints.           ** 
+       ** The game will start once you write your horse's name and choose his breed. **
+       ** And your contender will be chosen randomly ...                             **
+       ** Each round you win your points will increase by 10 and your contender      **
+       ** will lose 10 points ...                                                    **
+       ** If the result is tied your points will decrease by 10 and your contender   **
+       ** will get 10 points...                                                      **
+       ** If you fail your points will be zero and your horse will be fainted...     ** 
+       **                                                                            **
+       ** So here we are starting...                                                 **
+
+    **************************************************************************************
     """
+
+    b = """
+    ************************************************
+    Thank you for playing       O  ,--.
+    Horse Racing Game        _ /|\/  /\|
+                         ,;( )__7,  )
+                         /  //  // '--.
+                         '    \,   ,' '
+    ************************************************
+    Created By : 
+                  *****************     ************
+                  * Amani_ALZoubi *     * Omar_Ali *  
+                  *****************     ************
+
+    ************************************************
+
+    """
+    return a,b
        
 if __name__ == "__main__":
-    draw_horse()
-    # horse = HorsesRacing()
-    # print(str(horse))
-    # horse.set_name("Rose")
- 
-    # horse.set_Breed("thoroughbred")
-    # contender = HorsesRacing()
-    # contender.set_name("king")
-    # contender.set_Breed("arabian")
-    # contender.set_point(70)
-    # print(contender)
-    # print(horse.get_point())
-    # print(contender.get_point())
 
-    # print(HorsesRacing.get_round_numbers())
+    print(draw_horse()[0])
     horse = HorsesRacing()
     contender = HorsesRacing()
     horse.set_name(input("Enter your Horse name => "))
     lis=["american", "arabian", "thoroughbred", "gypsy", "andalusian"]
     e=input('choose his Breed : \n  american   arabian   thoroughbred    gypsy    andalusian \n => ')     
     i=0
-    while  i == 0:
+
+                        # #################### Start The Game #################### #
+
+    while  i == 0 :
             if e not in lis :
                     print("!!!!!!!!!!!!!!!!!!!! WRONG CHOICE !!!!!!!!!!!!!!!!!!!!")
                     e=input('choose his Breed again : \n  american   arabian   thoroughbred    gypsy    andalusian \n => ')
@@ -54,12 +79,17 @@ if __name__ == "__main__":
                     lose=f"{x} fainted!"
                     contender.set_name(random_contender()[0])
                     contender.set_Breed(random_contender()[1])
-                    contender.set_point(random_contender()[2])  
+                    contender.set_point(random_contender()[2])
+                    print("\n******************************************************************************")  
+                    print(f"\n           {horse} ** VS ** {contender}  \n")
+                    print("*******************************************************************************\n")
                     hr=horse.racing(contender)
-                    rr=f"round {HorsesRacing.get_round_numbers()}"
-                    # ''''
+                    rr=f"ROUND {HorsesRacing.get_round_numbers()}"
+                    sleep(1)  
 
-                    print(f"####################################################################### {rr} ###########################################")
+                        # #################### Create Load Bar #################### #
+
+                    print(f"####################################################################### {rr} ###########################################\n")
                     def Loadbar(iteration, total,prefix='', suffix='', decimals=1, length=100, fill='>'   ):
                             percent = ('{0:.'+ str(decimals) + 'f}').format(100 * (iteration/float(total)))
                             filledLenength = int(length * iteration // total)
@@ -72,29 +102,27 @@ if __name__ == "__main__":
                     l = len(items)  
                     Loadbar(0,l,prefix=rr, suffix='Complete', length=l)
                     for i, item in enumerate(items):
-                            sleep(0.03)
+                            sleep(0.04)
                             Loadbar(i + 1, l, prefix=rr, suffix='Complete', length=l)
-                    print(f"####################################################################### {rr} ###########################################")
+                    print(f"\n {hr}")
+                    print(f"\n####################################################################### {rr} ###########################################\n")
+                    print(f" {horse} ")
+                    print(f" {contender} ")
+                    print(f" ROUND {HorsesRacing.get_round_numbers()} ")
 
-                    # '''
-                    print(horse)
-                    print(contender)
-                    print(f"round {HorsesRacing.get_round_numbers()}")
+                        # #################### check if user want to continue or not #################### #
 
                     if hr == lose:
-                            print(f"ooh no :( {horse.get_name()} fainted")
-                            w=input("do you need to play again? [y/n] ==> ")
+                            print(f" \n OoOh NoOoO >_< {horse.get_name()} fainted \n\n ############################# \n")
+                            w=input("Do You Want To Play Again ?! [y/n] ==> ")
 
                             while w not in ['y','Y','N','n']:
-                               w=input("please choose [y/n] ==> ")  
+                               w=input(">>>> Please Choose [y/n] ==> ")  
                             if w == 'y' or w== 'Y' :
                                 i=0
                             elif w == 'n' or w== 'N' : 
                                 print(rr)
-                                print("*********************** Thank you for playing *************************")
+                                print(draw_horse()[1])
                                 i=1  
-                            
-                            
-
                     else:
                             i=0
